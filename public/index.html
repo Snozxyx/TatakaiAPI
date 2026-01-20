@@ -142,6 +142,7 @@
                 <span class="flex h-2 w-2 rounded-full bg-brand-400 animate-pulse"></span>
                 v2.0.4 is now available
             </div>
+                    <span class="px-2 py-1 bg-orange-500/20 text-orange-400 text-xs font-bold rounded-md border border-orange-500/30 select-none">Soon</span>
 
             <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
                 The Anime Data <br>
@@ -159,23 +160,16 @@
                 <div
                     class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-purple-600 rounded-full blur opacity-20 group-hover:opacity-40 transition duration-500">
                 </div>
-                <button onclick="copyInstall()"
+                <a href="https://github.com/Snozxyx/TatakaiAPI" target="_blank"
                     class="relative flex items-center gap-4 bg-zinc-900 border border-zinc-800 px-6 py-3 rounded-full hover:border-zinc-700 transition-all active:scale-95">
-                    <span class="text-zinc-500 font-mono select-none">$</span>
-                    <span class="font-mono text-zinc-200">npm install @Tatakai/api</span>
-                    <div id="copyIcon" class="text-zinc-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-                        </svg>
-                    </div>
-                    <div id="checkIcon" class="hidden text-green-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                    </div>
+                    <span class="font-mono text-zinc-200">Fork on GitHub</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                </a>
                 </button>
             </div>
             <!-- Deploy Buttons -->
@@ -470,15 +464,7 @@
                     <span class="text-sm text-zinc-500">Search specific regional content</span>
                 </div>
 
-                <div
-                    class="group flex flex-col md:flex-row items-start md:items-center justify-between p-4 bg-dark-800 border border-dark-border rounded-lg hover:border-zinc-600 transition-all">
-                    <div class="flex items-center gap-4 mb-2 md:mb-0">
-                        <span
-                            class="px-2.5 py-1 rounded-md bg-orange-500/10 text-orange-400 text-xs font-bold border border-orange-500/20 font-mono">POST</span>
-                        <code class="text-zinc-300 font-mono text-sm">/api/v1/auth/token</code>
-                    </div>
-                    <span class="text-sm text-zinc-500">Generate developer access tokens</span>
-                </div>
+         
 
             </div>
         </section>

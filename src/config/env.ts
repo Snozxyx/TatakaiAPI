@@ -55,6 +55,8 @@ export const env = cleanEnv(process.env, {
 
     // External APIs
     TMDB_KEY: str({ default: "", desc: "TMDB API key" }),
+    SUPABASE_URL: str({ default: "", desc: "Supabase Edge Function URL for WatchAnimeWorld scraper" }),
+    SUPABASE_AUTH_KEY: str({ default: "", desc: "Supabase authentication key" }),
 });
 
 // Convenience flags

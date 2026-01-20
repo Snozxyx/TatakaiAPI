@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { cache } from "../../config/cache.js";
 import type { ServerContext } from "../../config/context.js";
 import { log } from "../../config/logger.js";
+import { env } from "../../config/env.js";
 
 const watchawRouter = new Hono<ServerContext>();
 
@@ -159,8 +160,8 @@ async function getEpisodeSources(episodeIdentifier: string): Promise<any> {
     log.info(`Fetching WatchAnimeWorld episode via Supabase: ${parsed.slug}`);
 
     // Proxy to Supabase Edge Function (bypasses geoblocking/timeout)
-    const SUPABASE_URL = "https://xkbzamfyupjafugqeaby.supabase.co/functions/v1/watchanimeworld-scraper";
-    const AUTH_KEY = "Bearer sb_publishable_hiKONZyoLpTAkFpQL5DWIQ_1_OWjmj3"; // Specific key provided by user
+    const SUPABASE_URL = env.SUPABASE_URL;
+    const AUTH_KEY = env.SUPABASE_AUTH_KEY;
 
     try {
         const response = await fetchWithRetry(`${SUPABASE_URL}?episodeUrl=${parsed.slug}`, {
