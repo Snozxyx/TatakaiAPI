@@ -8,7 +8,7 @@ export class TatakaiClient {
     private apiKey?: string;
 
     constructor(config?: TatakaiConfig) {
-        this.baseUrl = config?.baseUrl || "http://localhost:4000/api/v1";
+        this.baseUrl = config?.baseUrl || process.env.BASE_URL || "http://localhost:4000/api/v1";
         this.apiKey = config?.apiKey;
     }
 

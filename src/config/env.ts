@@ -50,6 +50,9 @@ export const env = cleanEnv(process.env, {
         default: DeploymentEnv.NODEJS,
     }),
 
+    // Base URL
+    BASE_URL: str({ default: "http://localhost:4000/api/v1", desc: "API base URL" }),
+
     // External APIs
     TMDB_KEY: str({ default: "", desc: "TMDB API key" }),
 });
