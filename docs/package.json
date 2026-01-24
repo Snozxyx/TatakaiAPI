@@ -1,0 +1,57 @@
+{
+    "name": "tatakai-api",
+    "version": "1.1.0",
+    "description": "Unified anime API combining HiAnime, Consumet, and regional scrapers with modern caching, CORS, rate limiting, and logging",
+    "main": "dist/src/server.js",
+    "type": "module",
+    "scripts": {
+        "start": "node dist/src/server.js",
+        "dev": "tsx watch src/server.ts",
+        "build": "tsc",
+        "test": "npx tsx scripts/validate_api.ts",
+        "test:comprehensive": "npx tsx scripts/comprehensive_test.ts",
+        "test:watch": "vitest",
+        "typecheck": "tsc --noEmit",
+        "format": "prettier --cache --write .",
+        "format:check": "prettier --cache --check .",
+        "lint": "eslint src --ext .ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/TatakaAPI/tatakai-api.git"
+    },
+    "keywords": [
+        "anime",
+        "api",
+        "hianime",
+        "consumet",
+        "scraper",
+        "streaming"
+    ],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "@consumet/extensions": "github:consumet/consumet.ts",
+        "@hono/node-server": "^1.14.2",
+        "aniwatch": "^2.24.3",
+        "cheerio": "^1.0.0",
+        "dotenv": "^16.5.0",
+        "envalid": "^8.0.0",
+        "hono": "^4.7.10",
+        "hono-rate-limiter": "^0.4.2",
+        "ioredis": "^5.6.1",
+        "lru-cache": "^10.4.3",
+        "pino": "^9.7.0",
+        "pino-pretty": "^13.0.0"
+    },
+    "devDependencies": {
+        "@types/node": "^22.15.21",
+        "prettier": "^3.5.3",
+        "tsx": "^4.19.4",
+        "typescript": "^5.8.3",
+        "vitest": "^3.1.4"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}

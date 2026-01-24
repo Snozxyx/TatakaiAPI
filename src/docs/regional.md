@@ -45,13 +45,13 @@ Proxy-enabled scraper for `watchanimeworld.in` to bypass geoblocking.
 
 #### 🧪 Test Module
 
-\`\`\`bash
+```bash
 curl -X GET "<http://localhost:4000/api/v1/watchaw/episode?id=naruto-shippuden-1x1>"
-\`\`\`
+```
 
 #### 📄 Result
 
-\`\`\`json
+```json
 {
   "status": 200,
   "data": {
@@ -64,11 +64,11 @@ curl -X GET "<http://localhost:4000/api/v1/watchaw/episode?id=naruto-shippuden-1
     ]
   }
 }
-\`\`\`
+```
 
 #### 📦 Response Schema
 
-\`\`\`typescript
+```typescript
 interface WatchAnimeResponse {
     status: number;
     data: {
@@ -81,7 +81,7 @@ interface WatchAnimeResponse {
         }>;
     }
 }
-\`\`\`
+```
 
 ---
 
@@ -105,9 +105,9 @@ Browse anime by category (e.g., `hindi-anime-movies`, `cartoon-shows`).
 
 #### 🧪 Test Module
 
-\`\`\`bash
+```bash
 curl -X GET "<http://localhost:4000/api/v1/hindidubbed/category/hindi-anime-movies>"
-\`\`\`
+```
 
 ### Search
 
@@ -118,9 +118,9 @@ Search for specific anime titles.
 
 #### 🧪 Test Module
 
-\`\`\`bash
+```bash
 curl -X GET "<http://localhost:4000/api/v1/hindidubbed/search?title=doraemon>"
-\`\`\`
+```
 
 ### Anime Info
 
@@ -131,6 +131,60 @@ Get details and server links for a specific anime.
 
 #### 🧪 Test Module
 
-\`\`\`bash
+```bash
 curl -X GET "<http://localhost:4000/api/v1/hindidubbed/anime/doraemon-movie>"
-\`\`\`
+```
+
+---
+
+## 4. Desidubanime
+
+Advanced scraper for `desidubanime.me` with encrypted source handling.
+
+### Home / Spotlight / Trending
+
+- **URL**: `/desidubanime/home`
+- **Method**: `GET`
+- **Description**: Returns spotlight items, trending anime, and latest updates categorized by section.
+
+#### 🧪 Test Module
+
+```bash
+curl -X GET "http://localhost:4000/api/v1/desidubanime/home"
+```
+
+### Search
+
+- **URL**: `/desidubanime/search/:query`
+- **Method**: `GET`
+- **Query Params**: `page` (optional, default: 1)
+
+#### 🧪 Test Module
+
+```bash
+curl -X GET "http://localhost:4000/api/v1/desidubanime/search/naruto"
+```
+
+### Anime Info
+
+- **URL**: `/desidubanime/anime/:id`
+- **Method**: `GET`
+- **Description**: Returns detailed anime information and episode list.
+
+#### 🧪 Test Module
+
+```bash
+curl -X GET "http://localhost:4000/api/v1/desidubanime/anime/naruto-shippuden-hindi-dubbed"
+```
+
+### Watch Episode
+
+- **URL**: `/desidubanime/watch/:id`
+- **Method**: `GET`
+- **Description**: Returns video sources. Handles upstream 404s gracefully. Note that some sources may be encrypted (`type: "encrypted"`).
+
+#### 🧪 Test Module
+
+```bash
+curl -X GET "http://localhost:4000/api/v1/desidubanime/watch/naruto-shippuden-episode-323"
+```

@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import * as cheerio from "cheerio";
+import { log } from "../../config/logger.js";
 import { cache } from "../../config/cache.js";
 import type { ServerContext } from "../../config/context.js";
 
@@ -39,24 +40,28 @@ animelokRouter.get("/home", async (c) => {
     const cacheConfig = c.get("CACHE_CONFIG");
 
     const data = await cache.getOrSet(async () => {
+        log.info(`Fetching Animelok home: ${BASE_URL}/home`);
         const html = await fetchHtml(`${BASE_URL}/home`);
         const $ = cheerio.load(html);
 
         const sections: any[] = [];
 
-
         // Loop through all sections
-        $("section").each((_, section) => {
+        $("section").each((i, section) => {
             const title = $(section).find("h2").text().trim();
+            log.debug(`Processing section ${i}: ${title}`);
+
             if (!title) return;
 
             const items: any[] = [];
 
             // Find all anime cards in this section
-            $(section).find("a[href^='/anime/']").each((_, link) => {
+            $(section).find("a").each((_, link) => {
                 const url = $(link).attr("href");
-                const id = url?.split("/").pop(); // text-123456
-                const poster = $(link).find("img").attr("src");
+                if (!url || !url.includes("/anime/")) return;
+
+                const id = url.split("/").pop(); // text-123456
+                const poster = $(link).find("img").attr("src") || $(link).find("img").attr("data-src") || $(link).find("img").attr("srcset")?.split(" ")[0];
                 const title = $(link).find("h3, .font-bold").first().text().trim();
                 const rank = $(link).find("span").first().text().trim();
                 const dubBadge = $(link).text().toLowerCase().includes("dub");
@@ -78,8 +83,14 @@ animelokRouter.get("/home", async (c) => {
                     title,
                     items
                 });
+            } else {
+                log.warn(`No items found for section: ${title}`);
             }
         });
+
+        if (sections.length === 0) {
+            log.error("No sections found on Animelok home page");
+        }
 
         return { sections };
     }, cacheConfig.key, cacheConfig.duration);
